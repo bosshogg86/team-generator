@@ -14,97 +14,125 @@ console.log(outputPath);
 const render = require("./lib/htmlRenderer");
 
 const team = [];
-const questions = [
+const manager = [
   {
     type: "input",
-    name: "managerName",
+    name: "name",
     message: "What is the team manager's name?",
   },
   {
     type: "input",
-    name: "managerId",
+    name: "id",
     message: "What is the manager's employee Id?",
   },
   {
     type: "input",
-    name: "managerEmail",
+    name: "email",
     message: "What is the manager's email address?",
   },
   {
     type: "list",
-    name: "managerOfficeNumber",
+    name: "officeNumber",
     message: "What is the manager's office number?",
     choices: [1, 2, 3, 4],
   },
+];
+
+const add = [
+  {
+    type: "list",
+    name: "addEmployee",
+    message: "Do you have another employee to enter?",
+    choices: ["yes", "no"],
+  },
+];
+
+const which = [
+  {
+    type: "list",
+    name: "employee",
+    message: "Which type of employee do you want to enter?",
+    choices: ["engineer", "intern"],
+  },
+];
+
+const engineer = [
   {
     type: "input",
-    name: "engineerName",
+    name: "name",
     message: "Who is the team engineer?",
   },
   {
     type: "input",
-    name: "engineerId",
+    name: "id",
     message: "What is the engineer's employee Id?",
   },
   {
     type: "input",
-    name: "engineerEmail",
+    name: "email",
     message: "What is the engineer's email address?",
   },
   {
     type: "input",
-    name: "engineerGithub",
+    name: "github",
     message: "What is the engineer's github username?",
   },
+];
+
+const intern = [
   {
     type: "input",
-    name: "internName",
+    name: "name",
     message: "Who is the team intern?",
   },
   {
     type: "input",
-    name: "internId",
+    name: "id",
     message: "What is the intern's employee Id?",
   },
   {
     type: "input",
-    name: "internEmail",
+    name: "email",
     message: "What is the intern's email address?",
   },
   {
     type: "input",
-    name: "internSchool",
+    name: "school",
     message: "What school did the intern attend?",
   },
 ];
-const promptUser = () => inquirer.prompt(questions);
+
+const managerPrompt = () => inquirer.prompt(manager);
+const engineerPrompt = () => inquirer.prompt(engineer);
+const internPrompt = () => inquirer.prompt(intern);
+const addPrompt = () => inquirer.prompt(add);
+
+const whichPrompt = () => inquirer.prompt(which);
 
 const init = async () => {
   try {
-    const response = await promptUser();
+    const m = await managerPrompt();
 
-    const manager = new Manager(
-      response.managerName,
-      response.managerId,
-      response.managerEmail,
-      response.managerOfficeNumber
-    );
+    const manager = new Manager(m.name, m.id, m.email, m.officeNumber);
 
-    const engineer = new Engineer(
-      response.engineerName,
-      response.engineerId,
-      response.engineerEmail,
-      response.engineerGithub
-    );
+    team.push(manager);
 
-    const intern = new Intern(
-      response.internName,
-      response.internId,
-      response.internEmail,
-      response.internSchool
-    );
+    let addRes = await addPrompt();
 
-    team.push(manager, engineer, intern);
+    while (addRes.addEmployee === "yes") {
+      const which = await whichPrompt();
+      if (which.employee === "engineer") {
+        const e = await engineerPrompt();
+        const engineer = new Engineer(e.name, e.id, e.email, e.github);
+        team.push(engineer);
+        addRes = await addPrompt();
+      } else {
+        const i = await internPrompt();
+        const intern = new Intern(i.name, i.id, i.email, i.school);
+        team.push(intern);
+        addRes = await addPrompt();
+      }
+    }
 
     writeFileAsync("team.html", render(team));
 
@@ -115,12 +143,6 @@ const init = async () => {
 };
 
 init();
-// const e = new Engineer("Hannah Folk", 1, "hfolk25@gmail.com", "hannahfolk");
-// team.push(e);
-// fs.writeFile("team.html", render(team), function (err) {
-//   if (err) throw err;
-//   console.log("success!");
-// });
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
