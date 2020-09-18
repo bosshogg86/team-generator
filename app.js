@@ -18,7 +18,7 @@ const questions = [
   {
     type: "input",
     name: "managerName",
-    message: "What is the manager's name?",
+    message: "What is the team manager's name?",
   },
   {
     type: "input",
@@ -36,6 +36,46 @@ const questions = [
     message: "What is the manager's office number?",
     choices: [1, 2, 3, 4],
   },
+  {
+    type: "input",
+    name: "engineerName",
+    message: "Who is the team engineer?",
+  },
+  {
+    type: "input",
+    name: "engineerId",
+    message: "What is the engineer's employee Id?",
+  },
+  {
+    type: "input",
+    name: "engineerEmail",
+    message: "What is the engineer's email address?",
+  },
+  {
+    type: "input",
+    name: "engineerGithub",
+    message: "What is the engineer's github username?",
+  },
+  {
+    type: "input",
+    name: "internName",
+    message: "Who is the team intern?",
+  },
+  {
+    type: "input",
+    name: "internId",
+    message: "What is the intern's employee Id?",
+  },
+  {
+    type: "input",
+    name: "internEmail",
+    message: "What is the intern's email address?",
+  },
+  {
+    type: "input",
+    name: "internSchool",
+    message: "What school did the intern attend?",
+  },
 ];
 const promptUser = () => inquirer.prompt(questions);
 
@@ -50,7 +90,21 @@ const init = async () => {
       response.managerOfficeNumber
     );
 
-    team.push(manager);
+    const engineer = new Engineer(
+      response.engineerName,
+      response.engineerId,
+      response.engineerEmail,
+      response.engineerGithub
+    );
+
+    const intern = new Intern(
+      response.internName,
+      response.internId,
+      response.internEmail,
+      response.internSchool
+    );
+
+    team.push(manager, engineer, intern);
 
     writeFileAsync("team.html", render(team));
 
