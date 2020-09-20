@@ -1,13 +1,7 @@
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const {
-  managerQuestions,
-  engineerQuestions,
-  internQuestions,
-  add,
-  which,
-} = require("./lib/questions");
+const { questions } = require("./lib/questions");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -24,11 +18,11 @@ const Validator = require("validatorjs");
 // };
 const team = [];
 
-const managerPrompt = () => inquirer.prompt(managerQuestions);
-const engineerPrompt = () => inquirer.prompt(engineerQuestions);
-const internPrompt = () => inquirer.prompt(internQuestions);
-const addPrompt = () => inquirer.prompt(add);
-const whichPrompt = () => inquirer.prompt(which);
+const managerPrompt = () => inquirer.prompt(questions.manager);
+const engineerPrompt = () => inquirer.prompt(questions.engineer);
+const internPrompt = () => inquirer.prompt(questions.intern);
+const addPrompt = () => inquirer.prompt(questions.add);
+const whichPrompt = () => inquirer.prompt(questions.which);
 
 const init = async () => {
   try {
