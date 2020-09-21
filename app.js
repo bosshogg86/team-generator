@@ -10,12 +10,6 @@ const writeFileAsync = util.promisify(fs.writeFile);
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
-const Validator = require("validatorjs");
-// let nameValidator = new Validator(m.name, rules, ["Enter a valid input"]);
-// let rules = {
-//   name: "required",
-//   email: "required|email",
-// };
 const team = [];
 
 const managerPrompt = () => inquirer.prompt(questions.manager);
