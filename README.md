@@ -51,4 +51,4 @@ If you have any questions you can contact me direct at <jeffhogg86@gmail.com>. C
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/JeffHogg86.svg?style=social)](https://twitter.com/JeffHogg86)
 
-[![App Video](assets\teamss.png)](assets\team-generator-1600835668972.mp4 "App functionality")
+[![App Video](assets/teamss.png)](assets/team-generator-1600835668972.mp4 "App functionality")
