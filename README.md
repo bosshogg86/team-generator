@@ -51,4 +51,4 @@ If you have any questions you can contact me direct at <jeffhogg86@gmail.com>. C
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/JeffHogg86.svg?style=social)](https://twitter.com/JeffHogg86)
 
-![Screen shot](./assets/teamss.png)
+![Screen shot](assets/teamss.png)
