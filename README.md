@@ -10,6 +10,7 @@
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
+- [Demo](#demo)
 
 ## Description
 
@@ -51,4 +52,6 @@ If you have any questions you can contact me direct at <jeffhogg86@gmail.com>. C
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/JeffHogg86.svg?style=social)](https://twitter.com/JeffHogg86)
 
-[![App Video](Assets/teamss.png)](Assets/team-generator-1600835668972.mp4 "App functionality")
+## Demo
+
+[![App Demo](Assets/team-generator.gif)](https://github.com/bosshogg86/readme-generator)
